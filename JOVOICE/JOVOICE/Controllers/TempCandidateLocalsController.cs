@@ -53,18 +53,28 @@ namespace JOVOICE.Controllers
             model.MaxCandidates = GetMaxCandidates(model.ElectionArea);
             if (ModelState.IsValid)
             {
+                int activeCandidates = 0;
                 foreach (var candidate in model.Candidates)
                 {
-                    candidate.electionarea = model.ElectionArea;
-                    candidate.city = model.City;
-                    candidate.listname = model.ListName; // Assuming party name is common for all
-                    db.TempCandidateLocals.Add(candidate);
+                    if (activeCandidates < model.MaxCandidates)
+                    {
+                        candidate.electionarea = model.ElectionArea;
+                        candidate.city = model.City;
+                        candidate.listname = model.ListName; // Assuming party name is common for all
+                        db.TempCandidateLocals.Add(candidate);
+                        activeCandidates++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
                 db.SaveChanges();
                 return RedirectToAction("candMain", "Home");
             }
             return View(model);
         }
+
         private int GetMaxCandidates(string electionArea)
         {
             switch (electionArea)
@@ -79,6 +89,7 @@ namespace JOVOICE.Controllers
                     return 10; // For all other areas
             }
         }
+
 
 
 

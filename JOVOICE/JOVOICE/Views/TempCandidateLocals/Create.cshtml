@@ -138,89 +138,89 @@
                                         </div>
                                     </div>
 
-                                    </div>
+                                </div>
 
-                                    <div class="row mt-4">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>البريد الإلكتروني</th>
+                                                        <th>تاريخ الميلاد</th>
+                                                        <th>الديانة</th>
+                                                        <th>الجنس</th>
+                                                        <th>الرقم الوطني</th>
+                                                        <th>الاسم</th>
+                                                        <th>التسلسل</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.Candidates.Count; i++)
+                                                    {
                                                         <tr>
-                                                            <th>البريد الإلكتروني</th>
-                                                            <th>تاريخ الميلاد</th>
-                                                            <th>الديانة</th>
-                                                            <th>الجنس</th>
-                                                            <th>الرقم الوطني</th>
-                                                            <th>الاسم</th>
-                                                            <th>التسلسل</th>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.Candidates[i].email, new { htmlAttributes = new { @class = "form-control", placeholder = "البريد الإلكتروني" } })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].email, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.Candidates[i].birthdate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].birthdate, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.DropDownList($"Candidates[{i}].religion", new SelectList(new List<SelectListItem>
+                                                                    {
+                                                                        new SelectListItem { Text = "اختر الديانة", Value = "", Disabled = true },
+                                                                        new SelectListItem { Text = "مسلم", Value = "مسلم" },
+                                                                        new SelectListItem { Text = "مسيحي", Value = "مسيحي" },
+                                                                    }, "Value", "Text", Model.Candidates[i].religion), new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].religion, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.DropDownList($"Candidates[{i}].gender", new SelectList(new List<SelectListItem>
+                                                                    {
+                                                                        new SelectListItem { Text = "اختر الجنس", Value = "", Disabled = true },
+                                                                        new SelectListItem { Text = "ذكر", Value = "ذكر" },
+                                                                        new SelectListItem { Text = "أنثى", Value = "أنثى" }
+                                                                    }, "Value", "Text", Model.Candidates[i].gender), new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].gender, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.Candidates[i].national_id, new { htmlAttributes = new { @class = "form-control", placeholder = "الرقم الوطني" } })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].national_id, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.Candidates[i].name, new { htmlAttributes = new { @class = "form-control", placeholder = "الاسم" } })
+                                                                    @Html.ValidationMessageFor(m => m.Candidates[i].name, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </td>
+                                                            <td>@(i + 1)</td>
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @for (int i = 0; i < Model.Candidates.Count; i++)
-                                                        {
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.EditorFor(m => m.Candidates[i].email, new { htmlAttributes = new { @class = "form-control", placeholder = "البريد الإلكتروني" } })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].email, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.EditorFor(m => m.Candidates[i].birthdate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].birthdate, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.DropDownList($"Candidates[{i}].religion", new SelectList(new List<SelectListItem>
-                                                                        {
-                                                                            new SelectListItem { Text = "اختر الديانة", Value = "", Disabled = true },
-                                                                            new SelectListItem { Text = "مسلم", Value = "مسلم" },
-                                                                            new SelectListItem { Text = "مسيحي", Value = "مسيحي" },                                                                          
-                                                                        }, "Value", "Text", Model.Candidates[i].religion), new { @class = "form-control" })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].religion, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.DropDownList($"Candidates[{i}].gender", new SelectList(new List<SelectListItem>
-                                                                        {
-                                                                            new SelectListItem { Text = "اختر الجنس", Value = "", Disabled = true },
-                                                                            new SelectListItem { Text = "ذكر", Value = "ذكر" },
-                                                                            new SelectListItem { Text = "أنثى", Value = "أنثى" }
-                                                                        }, "Value", "Text", Model.Candidates[i].gender), new { @class = "form-control" })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].gender, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.EditorFor(m => m.Candidates[i].national_id, new { htmlAttributes = new { @class = "form-control", placeholder = "الرقم الوطني" } })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].national_id, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                        @Html.EditorFor(m => m.Candidates[i].name, new { htmlAttributes = new { @class = "form-control", placeholder = "الاسم" } })
-                                                                        @Html.ValidationMessageFor(m => m.Candidates[i].name, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </td>
-                                                                <td>@(i + 1)</td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <button id="sendBtn" type="submit" class="btn btn-success btn-send pt-2 btn-block">إرسال النموذج</button>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button id="sendBtn" type="submit" class="btn btn-success btn-send pt-2 btn-block">إرسال النموذج</button>
                                         </div>
                                     </div>
+                                </div>
                             }
                         </div>
                     </div> <!-- /.8 -->
@@ -232,46 +232,99 @@
 
 
 @section Scripts {
-    <script>
-        document.getElementById("sendBtn").onclick = function () {
-            window.alert("تم إرسال النموذج سوف يتم التواصل معم بأقرب وقت")
-        }
-            document.addEventListener('DOMContentLoaded', function () {
-                var cityDropdown = document.getElementById('cityDropdown');
-                var electionAreaInput = document.getElementById('electionAreaInput');
-                var electionAreaDropdown = document.getElementById('electionAreaDropdown');
+   <script>
+       document.addEventListener('DOMContentLoaded', function () {
+           var cityDropdown = document.getElementById('cityDropdown');
+           var electionAreaInput = document.getElementById('electionAreaInput');
+           var electionAreaDropdown = document.getElementById('electionAreaDropdown');
+           var candidateRows = document.querySelectorAll('tbody tr');
+           var nationalIdInputs = document.querySelectorAll('input[name$="national_id"]');
 
-                var electionAreas = {
-                    "إربد": [
-                        { Text: "إربد الأولى", Value: "إربد الأولى" },
-                        { Text: "إربد الثانية", Value: "إربد الثانية" }
-                    ],
-                    "المفرق": [
-                        { Text: "المفرق", Value: "المفرق" }
-                    ]
-                };
+           var electionAreas = {
+               "إربد": [
+                   { Text: "إربد الأولى", Value: "إربد الأولى", MaxCandidates: 10 },
+                   { Text: "إربد الثانية", Value: "إربد الثانية", MaxCandidates: 10 }
+               ],
+               "المفرق": [
+                   { Text: "المفرق", Value: "المفرق", MaxCandidates: 10 }
+               ]
+           };
 
-                cityDropdown.addEventListener('change', function () {
-                    var selectedCity = cityDropdown.value;
+           function updateCandidateRows(maxCandidates) {
+               candidateRows.forEach(function (row, index) {
+                   if (index < maxCandidates) {
+                       row.style.display = '';
+                       row.querySelectorAll('input, select').forEach(function (input) {
+                           input.required = true;
+                           input.disabled = false;
+                       });
+                   } else {
+                       row.style.display = 'none';
+                       row.querySelectorAll('input, select').forEach(function (input) {
+                           input.required = false;
+                           input.disabled = true;
+                       });
+                   }
+               });
+           }
 
-                    if (electionAreas[selectedCity]) {
-                        var options = electionAreas[selectedCity].map(function (area) {
-                            return new Option(area.Text, area.Value);
-                        });
+           function checkDuplicateNationalIds() {
+               var ids = [];
+               var hasDuplicate = false;
 
-                        electionAreaDropdown.innerHTML = '';
-                        options.forEach(function (option) {
-                            electionAreaDropdown.add(option);
-                        });
+               nationalIdInputs.forEach(function (input) {
+                   if (input.value && ids.includes(input.value)) {
+                       hasDuplicate = true;
+                       alert("الرقم الوطني موجود بالفعل.");
+                       input.value = '';
+                   } else {
+                       ids.push(input.value);
+                   }
+               });
 
-                        electionAreaDropdown.style.display = 'block';
-                        electionAreaInput.style.display = 'none';
-                    } else {
-                        electionAreaDropdown.style.display = 'none';
-                        electionAreaInput.style.display = 'block';
-                    }
-                });
-            });
+               return hasDuplicate;
+           }
+
+           electionAreaDropdown.addEventListener('change', function () {
+               var selectedArea = electionAreaDropdown.value;
+               var maxCandidates = 10;
+
+               Object.values(electionAreas).forEach(function (areas) {
+                   areas.forEach(function (area) {
+                       if (area.Value === selectedArea) {
+                           maxCandidates = area.MaxCandidates;
+                       }
+                   });
+               });
+
+               updateCandidateRows(maxCandidates);
+           });
+
+           cityDropdown.addEventListener('change', function () {
+               var selectedCity = cityDropdown.value;
+
+               if (electionAreas[selectedCity]) {
+                   var options = electionAreas[selectedCity].map(function (area) {
+                       return new Option(area.Text, area.Value);
+                   });
+
+                   electionAreaDropdown.innerHTML = '';
+                   options.forEach(function (option) {
+                       electionAreaDropdown.add(option);
+                   });
+
+                   electionAreaDropdown.style.display = 'block';
+                   electionAreaInput.style.display = 'none';
+               } else {
+                   electionAreaDropdown.style.display = 'none';
+                   electionAreaInput.style.display = 'block';
+               }
+           });
+
+           nationalIdInputs.forEach(function (input) {
+               input.addEventListener('change', checkDuplicateNationalIds);
+           });
+       });
 
     </script>
 }

@@ -33,20 +33,22 @@ namespace JOVOICE.Models
     }
     public class TempCandidateLocalsViewModel
     {
-        public List<TempCandidateLocal> Candidates { get; set; }
         public string ElectionArea { get; set; }
         public string City { get; set; }
         public string ListName { get; set; }
         public int MaxCandidates { get; set; }
+        public List<TempCandidateLocal> Candidates { get; set; }
+
         public TempCandidateLocalsViewModel()
         {
-            Candidates = new List<TempCandidateLocal>(10); // Initialize with 41 empty candidates
+            Candidates = new List<TempCandidateLocal>(10);
             for (int i = 0; i < 10; i++)
             {
                 Candidates.Add(new TempCandidateLocal());
             }
         }
     }
+
 }
 
 
